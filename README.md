@@ -11,6 +11,7 @@ Do note that these instructions apply to Windows Machine for Development Reasons
 5. Run command: `pip install -r requirements.txt`
 
 # Run the Server
-Run the command: `python src/wsgi.py` from the root directory.
+1. Run the command: `python src/wsgi.py` from the root directory.
+2. go to [127.0.0.1:4040](http://127.0.0.1:4040) on any web browser.
 
 # Installation to install on Linux Server
