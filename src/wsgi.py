@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with CSUFTheOnion. If not, see <https://www.gnu.org/licenses/>.
 
-from flask import Flask
+from flask import Flask, render_template
 import logger
 
 PORT = 4040
@@ -24,7 +24,7 @@ log = logger.get_logger(__name__)
 
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return render_template("index.html")
 
 if __name__ == '__main__':
     log.info(f"Starting Flask server on port {PORT}")
