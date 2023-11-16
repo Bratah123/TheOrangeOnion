@@ -8,7 +8,7 @@ Do note that these instructions apply to Windows Machine for Development Reasons
 2. Traverse to the project root directory
 3. Run command: `python -m venv venv` to create a virtual env for this project.
 4. Run command: `. venv/Scripts/activate` to activate the virtual environment.
-5. Run command: `pip install -r -requirements.txt`
+5. Run command: `pip install -r requirements.txt`
 
 # Run the Server
 Run the command: `python src/wsgi.py` from the root directory.
