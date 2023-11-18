@@ -1,0 +1,14 @@
+{
+  "name": "csuftheonion",
+  "version": "1.0.0",
+  "description": "CSUF Onion Article website for CPSC 254 specializing in satire news related to Califonia State University, Fullerton.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.2"
+  }
+}
