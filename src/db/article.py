@@ -35,23 +35,23 @@ class Article:
 def get_dummy_articles():
     return [
         Article(
-            "Has Batman Forsaken Orange County?",
-            "Lorem ipsum dolor sit amet\nconsectetur adipiscing elit",
-            "11 Dec 2021, 11:31AM",
-        ),
-        Article(
-            "Alien Foodstuff Terrorizing Orange County",
-            "Lorem ipsum dolor sit amet\nconsectetur adipiscing elit",
-            "12 Dec 2021, 11:21AM",
+            "Invading Oranges Now Primary Threat",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "15 Dec 2021, 12:51PM",
         ),
         Article(
             "Batman Returns! All Hope Not Lost?",
-            "Lorem ipsum dolor sit amet\nconsectetur adipiscing elit",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
             "13 Dec 2021, 12:21PM",
         ),
         Article(
-            "Invading Oranges Now Primary Threat",
-            "Lorem ipsum dolor sit amet\nconsectetur adipiscing elit",
-            "15 Dec 2021, 12:51PM",
+            "Alien Foodstuff Terrorizing Orange County",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "12 Dec 2021, 11:21AM",
+        ),
+        Article(
+            "Has Batman Forsaken Orange County?",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "11 Dec 2021, 11:31AM",
         ),
     ]
