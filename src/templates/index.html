@@ -1,5 +1,23 @@
 {% extends "base.html" %}
 {% block title %}The Orange Onion{% endblock %}
 {% block content %}
-<div class="container-lg">List of articles go here</div>
+<div class="container-lg">
+  <div class="row row-cols-1 gy-3">
+    <div class="col">
+      <h2 class="mt-1">Latest News</h2>
+    </div>
+    {% for article in articles %}
+      <div class="col mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ article.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{ article.date }}</h6>
+            <p class="card-text">{{ article.content }}</p>
+            <a href="#" class="card-link">read more...</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}

@@ -13,8 +13,9 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with CSUFTheOnion. If not, see <https://www.gnu.org/licenses/>.
-
 from flask import Flask, render_template
+
+from db.article import get_dummy_articles
 import logger
 
 PORT = 4040
@@ -26,7 +27,8 @@ log = logger.get_logger(__name__)
 @app.route("/")
 def landing_page():
     is_logged_in = True
-    return render_template("index.html", login_status=is_logged_in)
+    recent_articles = get_dummy_articles()
+    return render_template("index.html", login_status=is_logged_in, articles=recent_articles)
 
 
 @app.route("/login")
