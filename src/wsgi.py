@@ -25,12 +25,32 @@ log = logger.get_logger(__name__)
 
 @app.route("/")
 def landing_page():
-    return render_template("index.html")
+    is_logged_in = True
+    return render_template("index.html", login_status=is_logged_in)
 
 
 @app.route("/login")
 def login_page():
     return render_template("login.html")
+
+
+@app.route("/logout")
+def perform_logout():
+    # Session handling logic here
+    # Redirect to landing page
+    return render_template("index.html", login_status=False)
+
+
+@app.route("/new-article")
+def new_article():
+    is_logged_in = True
+    return render_template("new-article.html", login_status=is_logged_in)
+
+
+@app.route("/read/<article_id>")
+def article_page(article_id):
+    # Replace with dynamic page generating after fetching from DB
+    return "Lorem Ipsum!"
 
 
 if __name__ == '__main__':
