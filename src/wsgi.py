@@ -22,10 +22,17 @@ PORT = 4040
 app = Flask(__name__)
 log = logger.get_logger(__name__)
 
+
 @app.route("/")
-def hello_world():
+def landing_page():
     return render_template("index.html")
+
+
+@app.route("/login")
+def login_page():
+    return render_template("login.html")
+
 
 if __name__ == '__main__':
     log.info(f"Starting Flask server on port {PORT}")
-    app.run(host="0.0.0.0", port=4040)
+    app.run(host="0.0.0.0", port=4040, debug=True)
