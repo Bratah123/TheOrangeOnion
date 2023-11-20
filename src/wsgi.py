@@ -31,7 +31,7 @@ def landing_page():
 
 @app.route("/login")
 def login_page():
-    return render_template("login.html")
+    return render_template("login.html", login_status=False)
 
 
 @app.route("/logout")
