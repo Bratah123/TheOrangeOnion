@@ -243,3 +243,4 @@ fabric.properties
 
 # Self-generated log files
 src/logs/
+orange.db
