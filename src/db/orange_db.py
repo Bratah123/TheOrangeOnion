@@ -76,3 +76,18 @@ class OrangeDB:
         cur.execute("INSERT INTO articles (title, content, long_content, date) VALUES (?, ?, ?, ?)", (article.title, article.content, article.long_content, article.date))
         self.con.commit()
         cur.close()
+
+    def query_for_article_by_inclusive_title(self, title: str) -> list[Article]:
+        cur = self.con.cursor()
+        cur.execute("SELECT * FROM articles WHERE title LIKE ?", (f"%{title}%",))
+        articles_data = cur.fetchall()
+        cur.close()
+        
+        articles = []
+
+        for article_data in articles_data:
+            article = Article(article_data[1], article_data[2], article_data[3], article_data[4])
+            article.uuid = article_data[0]
+            articles.append(article)
+
+        return articles
