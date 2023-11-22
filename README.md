@@ -33,9 +33,10 @@ While development is mainly done using x86_64 machines running Windows, the proo
 1. `git clone` the repository
 2. Traverse to the project root directory
 3. Run command: `python3 -m venv venv` to create a virtual env for this project
-4. Run command: `venv/bin/pip3 install -r requirements.txt`
+4. Run command: `source venv/bin/activate` to activate and enter the virtual environment
+5. Run command: `venv/bin/pip3 install -r requirements.txt`
     - You may use the command `deactivate` to exit from the virtual environment after this
-5. Run command: `venv/bin/python3 src/db/init_db.py` to initialize the database
+6. Run command: `venv/bin/python3 src/db/init_db.py` to initialize the database
 
 ## Run the Server
 1. Run the following command from the project root directory:
