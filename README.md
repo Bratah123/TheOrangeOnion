@@ -18,6 +18,7 @@ While development is mainly done using x86_64 machines running Windows, the proo
 4. Run command: `. venv/Scripts/activate` to activate the virtual environment
     - If you run into an error at this stage, refer to the next subsection on setting the execution policy
 5. Run command: `pip install -r requirements.txt`
+    - You may use the command `deactivate` to exit from the virtual environment after this
 6. Run command: `venv/Scripts/python src/db/init_db.py` to initialize the database
 
 ### Setting PowerShell's Execution Policy
@@ -33,7 +34,8 @@ While development is mainly done using x86_64 machines running Windows, the proo
 2. Traverse to the project root directory
 3. Run command: `python3 -m venv venv` to create a virtual env for this project
 4. Run command: `venv/bin/pip3 install -r requirements.txt`
-6. Run command: `venv/bin/python3 src/db/init_db.py` to initialize the database
+    - You may use the command `deactivate` to exit from the virtual environment after this
+5. Run command: `venv/bin/python3 src/db/init_db.py` to initialize the database
 
 ## Run the Server
 1. Run the following command from the project root directory:
