@@ -26,7 +26,7 @@ log = logger.get_logger(__name__)
 
 @app.route("/")
 def landing_page():
-    is_logged_in = True
+    is_logged_in = False
     recent_articles = get_dummy_articles()
     return render_template("index.html", login_status=is_logged_in, articles=recent_articles)
 
