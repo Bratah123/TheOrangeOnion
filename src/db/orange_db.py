@@ -42,16 +42,27 @@ class OrangeDB:
 
         article_objects = []
 
-        for article in articles:
-            article_objects.append(Article(article[1], article[2], article[3], article[4]))
+        for article_data in articles:
+            article = Article(article[1], article[2], article[3], article[4])
+            article.uuid = article_data[0]
+
+            article_objects.append(article)
 
         return article_objects
     
     def get_article_by_id(self, article_id) -> Article:
         cur = self.con.cursor()
         cur.execute("SELECT * FROM articles WHERE id=?", (article_id,))
-        article = cur.fetchone()
+        article_data = cur.fetchone()
         cur.close()
+        
+        article = Article(article_data[1], article_data[2], article_data[3], article_data[4])
+        article.uuid = article_data[0]
 
         return Article(article[1], article[2], article[3], article[4])
 
+    def save_article(self, article: Article):
+        cur = self.con.cursor()
+        cur.execute("INSERT INTO articles (title, content, long_content, date) VALUES (?, ?, ?, ?)", (article.title, article.content, article.long_content, article.date))
+        self.con.commit()
+        cur.close()
