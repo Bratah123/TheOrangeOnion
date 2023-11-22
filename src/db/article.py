@@ -15,7 +15,6 @@
 # along with CSUFTheOnion. If not, see <https://www.gnu.org/licenses/>.
 import datetime
 from zoneinfo import ZoneInfo
-from orange_db import OrangeDB
 
 ARTICLE_CONTENT_WORD_LIMIT = 20
 
@@ -31,14 +30,6 @@ class Article:
             self.date = timestamp.strftime("%d %b %Y, %I:%M%p")  # format: 31 Jan 2022, 11:59PM
         else:
             self.date = date
-
-    def save_to_db(self):
-        # Check for content length is greater than 20 words.
-        if len(self.content.split()) < ARTICLE_CONTENT_WORD_LIMIT:
-            raise Exception("Article content must be at least 20 words long!")
-        
-        with OrangeDB() as db:
-            db.save_article(self)
 
     def __repr__(self):
         return f"Article with title: '{self.title}'; submitted on {self.date}"

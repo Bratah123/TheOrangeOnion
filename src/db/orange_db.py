@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with CSUFTheOnion. If not, see <https://www.gnu.org/licenses/>.
 import sqlite3
-from db.article import Article
+from db.article import Article, ARTICLE_CONTENT_WORD_LIMIT
 
 DATABASE_NAME = "orange.db"
 
@@ -63,6 +63,16 @@ class OrangeDB:
 
     def save_article(self, article: Article):
         cur = self.con.cursor()
+
+        # Check for article word limit
+        if len(article.content.split()) > ARTICLE_CONTENT_WORD_LIMIT:
+            raise ValueError(f"Article content exceeds {ARTICLE_CONTENT_WORD_LIMIT} words!")
+        
+        # Check for duplicate titles
+        cur.execute("SELECT * FROM articles WHERE title=?", (article.title,))
+        if cur.fetchone():
+            raise ValueError(f"Article with title '{article.title}' already exists!")
+        
         cur.execute("INSERT INTO articles (title, content, long_content, date) VALUES (?, ?, ?, ?)", (article.title, article.content, article.long_content, article.date))
         self.con.commit()
         cur.close()
