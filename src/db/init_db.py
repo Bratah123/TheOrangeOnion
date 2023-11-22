@@ -21,7 +21,7 @@ def main():
 
     # content is the short description of the article you see in the main page
     # long_content is the full article when you click on an article
-    cur.execute("CREATE TABLE IF NOT EXISTS articles (id INTEGER PRIMARY KEY, title TEXT, content TEXT, long_content TEXT, date TEXT)")
+    cur.execute("CREATE TABLE IF NOT EXISTS articles (id INTEGER PRIMARY KEY, title TEXT, content TEXT, long_content TEXT, date datetime)")
     # All accounts in the account section are considered admins
     cur.execute("CREATE TABLE IF NOT EXISTS accounts (id INTEGER PRIMARY KEY, username TEXT, password TEXT)")
 
