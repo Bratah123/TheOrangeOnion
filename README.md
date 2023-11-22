@@ -19,6 +19,8 @@ While development is mainly done using x86_64 machines running Windows, the proo
     - If you run into an error at this stage, refer to the next subsection on setting the execution policy
 5. Run command: `pip install -r requirements.txt`
     - You may use the command `deactivate` to exit from the virtual environment after this
+6. Run command: `pip install -r requirements.txt`Initialize the database:
+
 
 ### Setting PowerShell's Execution Policy
 1. Launch an administrative shell
@@ -35,10 +37,15 @@ While development is mainly done using x86_64 machines running Windows, the proo
 4. Run command: `venv/bin/pip3 install -r requirements.txt`
 
 ## Run the Server
-1. Run the following command from the project root directory:
+1. Initialize the database
+    - Windows: `venv/Scripts/python src/db/init_db.py`
+    - Linux: `venv/bin/python3 src/db/init_db.py`
+
+2. Run the following command from the project root directory:
     - Windows: `venv/Scripts/python src/wsgi.py`
     - Linux: `venv/bin/python3 src/wsgi.py`
-2. Go to the IP address listed in the console output on any web browser
+
+3. Go to the IP address listed in the console output on any web browser
     - At the time of writing, this should be [127.0.0.1:4040](http://127.0.0.1:4040)
     - Your mileage may vary as this is subject to change; always check the console output
 
