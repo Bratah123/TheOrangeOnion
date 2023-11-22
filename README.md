@@ -31,9 +31,8 @@ While development is mainly done using x86_64 machines running Windows, the proo
 ## Installation on Linux
 1. `git clone` the repository
 2. Traverse to the project root directory
-3. Run command: `python3 -m venv venv` to create a virtual environment for this project
-4. Run command: `source venv/bin/activate`
-5. Run Command: `pip install flask`
+3. Run command: `python3 -m venv venv` to create a virtual env for this project
+4. Run command: `venv/bin/pip3 install -r requirements.txt`
 
 ## Run the Server
 1. Run the following command from the project root directory:
