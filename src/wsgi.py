@@ -43,7 +43,7 @@ def perform_logout():
     return render_template("index.html", login_status=False)
 
 
-@app.route("/new-article")
+@app.route("/new_article")
 def new_article():
     is_logged_in = True
     return render_template("new-article.html", login_status=is_logged_in)
