@@ -33,7 +33,7 @@ def landing_page():
 
 @app.route("/login", methods=("GET", "POST"))
 def login_page():
-    if request.method == "POST":
+    if request.method == "POST" and request.form["form_type"] == "login":
         log.debug(f"User `{request.form['username']}` logged in with password `{request.form['password']}`")
         return redirect(url_for("landing_page"))
 
@@ -57,7 +57,6 @@ def new_article():
 def article_page(article_id):
     # Replace with dynamic page generating after fetching from DB
     return "Lorem Ipsum!"
-
 
 
 if __name__ == '__main__':
