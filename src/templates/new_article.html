@@ -7,12 +7,19 @@
       <h2 class="mt-1">New Article</h2>
     </div>
 
-<div class="container-lg">Article creation UX goes here</div>
-<div class="col">
-<div class="form-floating">
+  <div class="container-lg">Click below to add your article. Be sure to include a title, description, and the article itself.</div>
+    <div class="col">
+    <div class="form-floating"></div>
+
+    <div class="form-floating mb-3">
+      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <label for="floatingInput">Title</label>
+    </div>
     
-    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-    <label for="floatingTextarea2">Click to write</label>
+    <textarea class="form-control" placeholder="Description" id="floatingTextarea2" style="height: 50px"></textarea>
+    <textarea class="form-control" placeholder="Article" id="floatingTextarea2" style="height: 100px"></textarea>
+    
   </div>
+</div>
 {% endblock %}
 
