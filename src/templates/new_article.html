@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 {% block title %}Create New Article - The Orange Onion{% endblock %}
 {% block content %}
+<div class="container-lg">
+  <div class="row row-cols-1 gy-3">
+    <div class="col">
+      <h2 class="mt-1">New Article</h2>
+    </div>
+
 <div class="container-lg">Article creation UX goes here</div>
+<div class="col">
 <div class="form-floating">
+    
     <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-    <label for="floatingTextarea2">New Article</label>
+    <label for="floatingTextarea2">Click to write</label>
   </div>
 {% endblock %}
+
