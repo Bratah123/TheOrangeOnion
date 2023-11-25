@@ -13,7 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with CSUFTheOnion. If not, see <https://www.gnu.org/licenses/>.
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template, request, url_for
 
 from db.article import get_dummy_articles
 import logger
@@ -31,8 +31,12 @@ def landing_page():
     return render_template("index.html", login_status=is_logged_in, articles=recent_articles)
 
 
-@app.route("/login")
+@app.route("/login", methods=("GET", "POST"))
 def login_page():
+    if request.method == "POST":
+        log.debug(f"User `{request.form['username']}` logged in with password `{request.form['password']}`")
+        return redirect(url_for("landing_page"))
+
     return render_template("login.html", login_status=False)
 
 
