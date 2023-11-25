@@ -26,10 +26,7 @@ log = logger.get_logger(__name__)
 
 def search_form(form: ImmutableMultiDict) -> Optional[Callable]:
     if form["form_type"] == "search":
-        if "input" in form:
-            target = form['input']
-        else:
-            target = "blank"
+        target = form['search'] if form['search'] else "blank"
         log.debug(f"User searched for: {target}")
         return partial(redirect, location=url_for("search_page", search_field_input=target))
     return
