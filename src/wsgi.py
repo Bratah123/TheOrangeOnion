@@ -59,6 +59,7 @@ def article_page(article_id):
     return "Lorem Ipsum!"
 
 
+
 if __name__ == '__main__':
     log.info(f"Starting Flask server on port {PORT}")
     app.run(host="0.0.0.0", port=4040, debug=True)
