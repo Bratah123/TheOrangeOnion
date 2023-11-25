@@ -46,7 +46,7 @@ def perform_logout():
 @app.route("/new_article")
 def new_article():
     is_logged_in = True
-    return render_template("new-article.html", login_status=is_logged_in)
+    return render_template("new_article.html", login_status=is_logged_in)
 
 
 @app.route("/read/<article_id>")
