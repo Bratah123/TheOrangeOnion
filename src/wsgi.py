@@ -13,10 +13,13 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with CSUFTheOnion. If not, see <https://www.gnu.org/licenses/>.
+
 from flask import Flask, redirect, render_template, request, url_for
 
 from db.article import get_dummy_articles
-import logger
+from util import logger
+from form_management.login import login_form
+from form_management.search import search_form
 
 PORT = 4040
 
@@ -24,19 +27,37 @@ app = Flask(__name__)
 log = logger.get_logger(__name__)
 
 
-@app.route("/")
+@app.route("/", methods=("GET", "POST"))
 def landing_page():
+    if request.method == "POST":
+        action = search_form(request.form)
+        if action:
+            return action()
+
     is_logged_in = False
     recent_articles = get_dummy_articles()
     return render_template("index.html", login_status=is_logged_in, articles=recent_articles)
 
 
+@app.route("/search/<search_field_input>", methods=("GET", "POST"))
+def search_page(search_field_input: str):
+    if request.method == "POST":
+        action = search_form(request.form)
+        if action:
+            return action()
+
+    return render_template("search.html", search_field_input=search_field_input)
+
+
 @app.route("/login", methods=("GET", "POST"))
 def login_page():
-    if request.method == "POST" and request.form["form_type"] == "login":
-        log.debug(f"User `{request.form['username']}` logged in with password `{request.form['password']}`")
-        return redirect(url_for("landing_page"))
-
+    if request.method == "POST":
+        action = login_form(request.form)
+        if action:
+            return action()
+        action = search_form(request.form)
+        if action:
+            return action()
     return render_template("login.html", login_status=False)
 
 
@@ -44,17 +65,27 @@ def login_page():
 def perform_logout():
     # Session handling logic here
     # Redirect to landing page
-    return render_template("index.html", login_status=False)
+    return redirect(url_for("landing_page"))
 
 
-@app.route("/new_article")
+@app.route("/new_article", methods=("GET", "POST"))
 def new_article():
+    if request.method == "POST":
+        action = search_form(request.form)
+        if action:
+            return action()
+
     is_logged_in = True
     return render_template("new_article.html", login_status=is_logged_in)
 
 
-@app.route("/read/<article_id>")
+@app.route("/read/<article_id>", methods=("GET", "POST"))
 def article_page(article_id):
+    if request.method == "POST":
+        action = search_form(request.form)
+        if action:
+            return action()
+
     # Replace with dynamic page generating after fetching from DB
     return "Lorem Ipsum!"
 
