@@ -108,9 +108,17 @@ def article_page(article_id):
         action = search_form(request.form)
         if action:
             return action()
-
+    article = None
     # Replace with dynamic page generating after fetching from DB
-    return "Lorem Ipsum!"
+    with OrangeDB() as db:
+        article = db.get_article_by_id(article_id)
+
+    login_status = False
+
+    if "user" in session:
+        login_status = True
+
+    return render_template("article.html", article=article, login_status=login_status)
 
 
 if __name__ == '__main__':

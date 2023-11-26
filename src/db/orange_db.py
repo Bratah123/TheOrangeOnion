@@ -60,7 +60,7 @@ class OrangeDB:
         article = Article(article_data[1], article_data[2], article_data[3], article_data[4])
         article.uuid = article_data[0]
 
-        return Article(article[1], article[2], article[3], article[4])
+        return article
 
     def save_article(self, article: Article):
         cur = self.con.cursor()
