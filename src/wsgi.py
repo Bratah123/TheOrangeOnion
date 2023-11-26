@@ -13,7 +13,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with CSUFTheOnion. If not, see <https://www.gnu.org/licenses/>.
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, url_for, session
 
 from db.orange_db import OrangeDB
 from util import logger
@@ -23,6 +23,7 @@ from form_management.search import search_form
 PORT = 4040
 
 app = Flask(__name__)
+app.secret_key = "super duper secret key that no one can guess"
 log = logger.get_logger(__name__)
 
 
@@ -35,9 +36,13 @@ def landing_page():
 
     is_logged_in = False
     recent_articles = []
-    
+
     with OrangeDB() as db:
         recent_articles = db.get_articles_by_page(0)
+
+    # Checking if user is logged in, in our case, only admins can be logged in
+    if "user" in session:
+        is_logged_in = True
 
     return render_template("index.html", login_status=is_logged_in, articles=recent_articles)
 
@@ -61,13 +66,24 @@ def login_page():
         action = search_form(request.form)
         if action:
             return action()
-    return render_template("login.html", login_status=False)
+        
+    is_logged_in = False
+
+    # Checking if user is logged in, in our case, only admins can be logged in
+    if "user" in session:
+        is_logged_in = True
+
+    return render_template("login.html", login_status=is_logged_in)
 
 
 @app.route("/logout")
 def perform_logout():
     # Session handling logic here
     # Redirect to landing page
+
+    if "user" in session:
+        session.pop("user")
+
     return redirect(url_for("landing_page"))
 
 
@@ -78,7 +94,11 @@ def new_article():
         if action:
             return action()
 
-    is_logged_in = True
+    is_logged_in = False
+
+    if "user" in session:
+        is_logged_in = True
+        
     return render_template("new_article.html", login_status=is_logged_in)
 
 

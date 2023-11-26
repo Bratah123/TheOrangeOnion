@@ -19,7 +19,7 @@ from db.orange_db import OrangeDB
 from functools import partial
 from typing import Callable, Optional
 
-from flask import redirect, url_for
+from flask import redirect, url_for, session
 from werkzeug.datastructures.structures import ImmutableMultiDict
 
 from util import logger
@@ -40,6 +40,7 @@ def login_form(form: ImmutableMultiDict) -> Optional[Callable]:
 
             if user and bcrypt.checkpw(password.encode("utf-8"), password_from_db):
                 log.debug(f"User `{username}` has successfully logged in.")
+                session['user'] = user
                 return partial(redirect, location=url_for("landing_page"))
             else:
                 log.debug(f"User `{username}` has failed to logged in.")
