@@ -33,32 +33,3 @@ class Article:
 
     def __repr__(self):
         return f"Article with title: '{self.title}'; submitted on {self.date}"
-
-
-def get_dummy_articles():
-    return [
-        Article(
-            "Invading Oranges Now Primary Threat",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            "15 Dec 2021, 12:51PM",
-        ),
-        Article(
-            "Batman Returns! All Hope Not Lost?",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            "13 Dec 2021, 12:21PM",
-        ),
-        Article(
-            "Alien Foodstuff Terrorizing Orange County",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            "12 Dec 2021, 11:21AM",
-        ),
-        Article(
-            "Has Batman Forsaken Orange County?",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            "11 Dec 2021, 11:31AM",
-        ),
-    ]

@@ -13,10 +13,9 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with CSUFTheOnion. If not, see <https://www.gnu.org/licenses/>.
-
 from flask import Flask, redirect, render_template, request, url_for
 
-from db.article import get_dummy_articles
+from db.orange_db import OrangeDB
 from util import logger
 from form_management.login import login_form
 from form_management.search import search_form
@@ -35,7 +34,11 @@ def landing_page():
             return action()
 
     is_logged_in = False
-    recent_articles = get_dummy_articles()
+    recent_articles = []
+    
+    with OrangeDB() as db:
+        recent_articles = db.get_articles_by_page(0)
+
     return render_template("index.html", login_status=is_logged_in, articles=recent_articles)
 
 

@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with CSUFTheOnion. If not, see <https://www.gnu.org/licenses/>.
 import sqlite3
+import bcrypt
 from db.article import Article, ARTICLE_CONTENT_WORD_LIMIT
 
 DATABASE_NAME = "orange.db"
@@ -43,7 +44,7 @@ class OrangeDB:
         article_objects = []
 
         for article_data in articles:
-            article = Article(article[1], article[2], article[3], article[4])
+            article = Article(article_data[1], article_data[2], article_data[3], article_data[4])
             article.uuid = article_data[0]
 
             article_objects.append(article)
@@ -91,3 +92,33 @@ class OrangeDB:
             articles.append(article)
 
         return articles
+    
+    def register_user(self, username: str, password: str):
+        """
+        Registers a user with the given username and password.
+        Hashes the password before storing it.
+        """
+        cur = self.con.cursor()
+        hashed_password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
+        cur.execute("SELECT * FROM users WHERE username=?", (username,))
+
+        if cur.fetchone():
+            raise ValueError(f"User with username '{username}' already exists!")
+        
+        cur.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, hashed_password))
+        self.con.commit()
+        cur.close()
+
+    def get_user(self, username: str) -> tuple[str, str]:
+        """
+        Returns the username and hashed password of the user with the given username.
+        """
+        cur = self.con.cursor()
+        cur.execute("SELECT * FROM users WHERE username=?", (username,))
+        user = cur.fetchone()
+        cur.close()
+
+        if not user:
+            raise ValueError(f"User with username '{username}' does not exist!")
+        
+        return user[1], user[2]
