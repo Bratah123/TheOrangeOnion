@@ -33,21 +33,22 @@ def login_form(form: ImmutableMultiDict) -> Optional[Callable]:
         password = form["password"]
         log.debug(f"User `{username}` has attempted to logged in.")
 
+        user = None
         # fetch data from database
         with OrangeDB() as db:
             user = db.get_user(username)
 
-            if not user:
-                log.debug(f"User `{username}` does not exist.")
-                return partial(redirect, location=url_for("login_page"))
-            
-            password_from_db = user[2]
+        if not user:
+            log.debug(f"User `{username}` does not exist.")
+            return partial(redirect, location=url_for("login_page"))
+        
+        password_from_db = user[2]
 
-            if bcrypt.checkpw(password.encode("utf-8"), password_from_db):
-                log.debug(f"User `{username}` has successfully logged in.")
-                session['user'] = user
-                return partial(redirect, location=url_for("landing_page"))
-            else:
-                log.debug(f"User `{username}` has failed to logged in.")
-                return partial(redirect, location=url_for("login_page"))
+        if bcrypt.checkpw(password.encode("utf-8"), password_from_db):
+            log.debug(f"User `{username}` has successfully logged in.")
+            session['user'] = user
+            return partial(redirect, location=url_for("landing_page"))
+        else:
+            log.debug(f"User `{username}` has failed to logged in.")
+            return partial(redirect, location=url_for("login_page"))
     return
