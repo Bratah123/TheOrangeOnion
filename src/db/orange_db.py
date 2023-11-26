@@ -118,7 +118,4 @@ class OrangeDB:
         user = cur.fetchone()
         cur.close()
 
-        if not user:
-            raise ValueError(f"User with username '{username}' does not exist!")
-        
         return user
