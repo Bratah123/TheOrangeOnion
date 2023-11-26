@@ -13,6 +13,9 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with CSUFTheOnion. If not, see <https://www.gnu.org/licenses/>.
+import bcrypt
+
+from db.orange_db import OrangeDB
 from functools import partial
 from typing import Callable, Optional
 
@@ -26,6 +29,19 @@ log = logger.get_logger(__name__)
 
 def login_form(form: ImmutableMultiDict) -> Optional[Callable]:
     if form["form_type"] == "login":
-        log.debug(f"User `{form['username']}` logged in with password `{form['password']}`")
-        return partial(redirect, location=url_for("landing_page"))
+        username = form["username"]
+        password = form["password"]
+        log.debug(f"User `{username}` has attempted to logged in.")
+
+        # fetch data from database
+        with OrangeDB() as db:
+            user = db.get_user(username)
+            password_from_db = user[2]
+
+            if user and bcrypt.checkpw(password.encode("utf-8"), password_from_db):
+                log.debug(f"User `{username}` has successfully logged in.")
+                return partial(redirect, location=url_for("landing_page"))
+            else:
+                log.debug(f"User `{username}` has failed to logged in.")
+                return partial(redirect, location=url_for("login_page"))
     return

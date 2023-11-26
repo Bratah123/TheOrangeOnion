@@ -114,11 +114,11 @@ class OrangeDB:
         Returns the username and hashed password of the user with the given username.
         """
         cur = self.con.cursor()
-        cur.execute("SELECT * FROM users WHERE username=?", (username,))
+        cur.execute("SELECT * FROM accounts WHERE username=?", (username,))
         user = cur.fetchone()
         cur.close()
 
         if not user:
             raise ValueError(f"User with username '{username}' does not exist!")
         
-        return user[1], user[2]
+        return user
