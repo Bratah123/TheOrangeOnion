@@ -20,6 +20,7 @@ While development is mainly done using x86_64 machines running Windows, the proo
 5. Run command: `pip install -r requirements.txt`
     - You may use the command `deactivate` to exit from the virtual environment after this
 6. Run command: `venv/Scripts/python src/db/init_db.py` to initialize the database
+7. Run command: `venv/Scripts/python src/db/init_db_data.py` to initialize some starter data to database
 
 ### Setting PowerShell's Execution Policy
 1. Launch an administrative shell
@@ -37,6 +38,7 @@ While development is mainly done using x86_64 machines running Windows, the proo
 5. Run command: `venv/bin/pip3 install -r requirements.txt`
     - You may use the command `deactivate` to exit from the virtual environment after this
 6. Run command: `venv/bin/python3 src/db/init_db.py` to initialize the database
+7. Run command: `venv/Scripts/python src/db/init_db_data.py` to initialize some starter data to database
 
 ## Run the Server
 1. Run the following command from the project root directory:
