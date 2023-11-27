@@ -130,7 +130,7 @@ def article_page(article_id):
 
 @app.errorhandler(404)
 def not_found(error):
-    log.debug(f"Invalid page access:\n%s", error)
+    log.debug(f"Invalid page access:\n\t\t%s", error)
     return render_template("404.html")
 
 
