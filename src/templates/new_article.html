@@ -2,40 +2,50 @@
 {% block title %}Create New Article - The Orange Onion{% endblock %}
 {% block content %}
 <div class="container-lg">
-  <div class="row row-cols-1 gy-3">
-    <div class="col">
-      <h2 class="mt-1">New Article</h2>
-    </div>
-
-    <div class="container-lg">
-      <div class="text-center form-floating">
-        Click below to add your article. Be sure to include a title, description, and the article itself.
-      </div>
-      
-      <div class="col">
-        <div class="form-floating">
-          <div class="text-center">
-            <form method="post">
-              <input value="new_article" type="hidden" name="form_type">
-              <div class="row justify-content-center">
-                <div class="form-floating mb-3 col-9 col-lg-8">
-                  <input type="text" class="form-control" id="titleInput" placeholder="Article Title" name="title" value="{{ request.form['title'] }}">
-                  <label for="titleInput">Title</label>
-                </div>
-                <div class="form-floating mb-3 col-9 col-lg-8">
-                  <input type="text" class="form-control" id="descriptionInput" placeholder="Article Description" name="content" value="{{ request.form['content'] }}">
-                  <label for="descriptionInput">Description</label>
-                </div>
-                <div class="form-floating mb-3 col-9 col-lg-8">
-                  <textarea class="form-control" placeholder="Leave a comment here" id="longContentInput" style="height: 100px" name="long_content" value="{{ request.form['long_content'] }}"></textarea>
-                  <label for="longContentInput">Article</label>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+  <div class="row justify-content-center">
+    <div class="col-11 col-lg-8">
+      <h2 class="p-2 text-start">New Article</h2>
+      <div class="text-start fst-italic mb-3 p-2">Click on a field to start filling it out. All fields are required!</div>
+      <form class="p-2" action="{{ url_for('new_article')}}" method="post">
+        <input value="new_article" type="hidden" name="form_type">
+        <div class="form-floating mb-3">
+          <input
+                  type="text"
+                  class="form-control"
+                  id="titleInput"
+                  placeholder="Article Title"
+                  name="title"
+          >
+          <label for="titleInput">Title</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+                  type="text"
+                  class="form-control"
+                  id="descriptionInput"
+                  placeholder="Article Description"
+                  name="content"
+          >
+          <label for="descriptionInput">Description</label>
+        </div>
+        <div class="form-floating mb-3">
+          <textarea
+                  class="form-control"
+                  placeholder="Leave a comment here"
+                  id="longContentInput"
+                  style="min-height:25vh;max-height:65vh"
+                  name="long_content"
+          ></textarea>
+          <label for="longContentInput">Article Body</label>
+        </div>
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="d-grid justify-content-md-end">
+            <button type="submit" class="btn btn-primary">Submit</button>
           </div>
-      </div>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 {% endblock %}
-
