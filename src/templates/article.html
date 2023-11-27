@@ -22,13 +22,15 @@
         </div>
       </div>
       <div class="row row-cols-1 row-cols-sm-2 mt-1 mt-lg-3">
-        <div class="col-11 col-lg-9">
-          <p class="text-start text-break pe-3 border-end border-secondary-subtle">{{ article.long_content }}</p>
+        <div class="col-11 col-lg-9 border-end border-secondary-subtle">
+          {% for paragraph in formatted_body %}
+            <p class="text-start text-break pe-3">{{paragraph}}</p>
+          {% endfor %}
         </div>
         <div class="col col-lg-3">
           <p class="text-start fst-italic ps-1">
             Ads <br>
-            <i>We're looking for sponsors!</i>
+            We're looking for sponsors!
           </p>
         </div>
       </div>

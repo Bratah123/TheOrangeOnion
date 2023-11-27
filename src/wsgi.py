@@ -118,7 +118,12 @@ def article_page(article_id):
 
     login_status = True if "user" in session else False
 
-    return render_template("article.html", article=article, login_status=login_status)
+    return render_template(
+        "article.html",
+        article=article,
+        formatted_body=article.long_content.split("\r\n"),
+        login_status=login_status,
+    )
 
 
 @app.errorhandler(404)
