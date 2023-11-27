@@ -43,14 +43,10 @@ While development is mainly done using x86_64 machines running Windows, the proo
 
 ## Gallery
 
-![image](https://github.com/Bratah123/TheOrangeOnion/assets/70254940/3214e67c-10c2-41f5-9e43-eff5819ab56e)
-![image](https://github.com/Bratah123/TheOrangeOnion/assets/58405975/f15f79d3-e289-4268-8f41-f240f79ca7ee)
-![image](https://github.com/Bratah123/TheOrangeOnion/assets/70254940/dfe8f349-548c-4dd0-8c74-3a4cb74428e8)
-![image](https://github.com/Bratah123/TheOrangeOnion/assets/70254940/e329418e-0174-4237-b888-8fa1c279d0a5)
-
-
-
-
+![image](https://github.com/Bratah123/TheOrangeOnion/assets/58405975/90f697bd-1355-4375-b108-e8192d6ffca1)
+![image](https://github.com/Bratah123/TheOrangeOnion/assets/58405975/c99ae6c4-d92d-42b7-9e5d-f0e256dd4657)
+![image](https://github.com/Bratah123/TheOrangeOnion/assets/58405975/fb141fc8-08fc-4031-9b82-c602b2c558aa)
+![image](https://github.com/Bratah123/TheOrangeOnion/assets/58405975/90095d83-a00f-4950-b3dc-b2029276ccd1)
 
 ## Run the Server
 1. Run the following command from the project root directory:
