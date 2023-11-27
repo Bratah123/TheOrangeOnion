@@ -40,5 +40,5 @@ def article_creation(form: ImmutableMultiDict) -> Optional[Callable]:
         with OrangeDB() as db:
             db.save_article(article)
 
-        return partial(redirect, location=url_for("landing_page", login_status=False))
+        return partial(redirect, location=url_for("landing_page"))
     return
