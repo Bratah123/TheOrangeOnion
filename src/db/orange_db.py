@@ -19,6 +19,7 @@ from db.article import Article, ARTICLE_CONTENT_WORD_LIMIT
 
 DATABASE_NAME = "orange.db"
 
+
 class OrangeDB:
     def __init__(self):
         self.articles = []
@@ -31,14 +32,16 @@ class OrangeDB:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.con.close()
 
-    def get_articles_by_page(self, page_num) -> list[Article]:
+    def get_articles_by_page(self, page_num) -> tuple[list[Article], int]:
         """
         Returns a list of articles on a given page.
         Page 1 is the first 10 entries, page 2 is the next 10, etc.
         """
         cur = self.con.cursor()
-        cur.execute("SELECT * FROM articles ORDER BY id DESC LIMIT 10 OFFSET ?", (page_num * 10,))
+        cur.execute("SELECT * FROM articles ORDER BY id DESC LIMIT 10 OFFSET ?;", (page_num * 10,))
         articles = cur.fetchall()
+        cur.execute("SELECT COUNT(title) FROM articles;")
+        count = (cur.fetchone()[0] - 1) // 10 + 1
         cur.close()
 
         article_objects = []
@@ -49,7 +52,7 @@ class OrangeDB:
 
             article_objects.append(article)
 
-        return article_objects
+        return article_objects, count
     
     def get_article_by_id(self, article_id) -> Article:
         cur = self.con.cursor()

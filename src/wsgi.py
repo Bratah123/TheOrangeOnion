@@ -37,12 +37,33 @@ def landing_page():
 
     # Checking if user is logged in, in our case, only admins can be logged in
     login_status = True if "user" in session else False
-    recent_articles = []
 
     with OrangeDB() as db:
-        recent_articles = db.get_articles_by_page(0)
+        recent_articles, _ = db.get_articles_by_page(0)
 
     return render_template("index.html", login_status=login_status, articles=recent_articles)
+
+
+@app.route("/<page>/", methods=("GET", "POST"))
+def article_list(page: int):
+    if request.method == "POST":
+        action = search_form(request.form)
+        if action:
+            return action()
+
+    # Checking if user is logged in, in our case, only admins can be logged in
+    login_status = True if "user" in session else False
+
+    with OrangeDB() as db:
+        current_articles, last_page = db.get_articles_by_page(page)
+
+    return render_template(
+        "index.html",
+        login_status=login_status,
+        articles=current_articles,
+        current_page=page,
+        last_page=last_page,
+    )
 
 
 @app.route("/search/<search_field_input>", methods=("GET", "POST"))
