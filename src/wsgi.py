@@ -66,10 +66,13 @@ def login_page():
         action = search_form(request.form)
         if action:
             return action()
-        
-    login_status = True if "user" in session else False
 
-    return render_template("login.html", login_status=login_status)
+    if "user" in session:
+        return redirect(url_for("landing_page"))
+    else:
+        login_status = False
+
+    return render_template("login.html", login_status=login_status, invalid=request.args.get("invalid", default=False))
 
 
 @app.route("/logout")

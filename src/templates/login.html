@@ -12,18 +12,23 @@
   <div class="row justify-content-center mt-3 mt-lg-5">
     <div class="col-9 col-lg-4">
       <form class="shadow border rounded-2 border-light p-4" method="post">
-          <input value="login" type="hidden" name="form_type">
-          <div class="mb-3">
-            <label for="inputUsername" class="form-label"><strong>Username</strong></label>
-            <input type="text" class="form-control" id="inputUsername" name="username" value="{{ request.form['username'] }}">
+        <input value="login" type="hidden" name="form_type">
+        <div class="mb-3">
+          <label for="inputUsername" class="form-label"><strong>Username</strong></label>
+          <input type="text" class="form-control" id="inputUsername" name="username" value="{{ request.form['username'] }}">
+        </div>
+        <div class="mb-3">
+          <label for="inputPassword" class="form-label"><strong>Password</strong></label>
+          <input type="password" class="form-control" id="inputPassword" name="password" value="{{ request.form['password'] }}">
+        {% if invalid %}
+          <div class="mt-4 fst-italic text-danger-emphasis">
+            Invalid username or password!
           </div>
-          <div class="mb-3">
-            <label for="inputPassword" class="form-label"><strong>Password</strong></label>
-            <input type="password" class="form-control" id="inputPassword" name="password" value="{{ request.form['password'] }}">
-          </div>
-          <div class="d-grid mb-3">
-            <button type="submit" class="btn btn-primary shadow-sm mt-3">Submit</button>
-          </div>
+        {% endif %}
+        </div>
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary shadow-sm mt-3">Submit</button>
+        </div>
       </form>
     </div>
   </div>

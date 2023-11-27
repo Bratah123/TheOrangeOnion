@@ -40,7 +40,7 @@ def login_form(form: ImmutableMultiDict) -> Optional[Callable]:
 
         if not user:
             log.debug(f"User `{username}` does not exist.")
-            return partial(redirect, location=url_for("login_page"))
+            return partial(redirect, location=url_for("login_page", invalid=True))
         
         password_from_db = user[2]
 
@@ -50,5 +50,5 @@ def login_form(form: ImmutableMultiDict) -> Optional[Callable]:
             return partial(redirect, location=url_for("landing_page"))
         else:
             log.debug(f"User `{username}` has failed to logged in.")
-            return partial(redirect, location=url_for("login_page"))
+            return partial(redirect, location=url_for("login_page", invalid=True))
     return
