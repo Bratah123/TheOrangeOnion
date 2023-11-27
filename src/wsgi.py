@@ -39,13 +39,19 @@ def landing_page():
     login_status = True if "user" in session else False
 
     with OrangeDB() as db:
-        recent_articles, _ = db.get_articles_by_page(0)
+        recent_articles, last_page = db.get_articles_by_page(1)
 
-    return render_template("index.html", login_status=login_status, articles=recent_articles)
+    return render_template(
+        "index.html",
+        login_status=login_status,
+        articles=recent_articles,
+        current_page=1,
+        last_page=last_page,
+    )
 
 
-@app.route("/<page>/", methods=("GET", "POST"))
-def article_list(page: int):
+@app.route("/page/<page>", methods=("GET", "POST"))
+def article_list(page: str):
     if request.method == "POST":
         action = search_form(request.form)
         if action:
@@ -55,7 +61,7 @@ def article_list(page: int):
     login_status = True if "user" in session else False
 
     with OrangeDB() as db:
-        current_articles, last_page = db.get_articles_by_page(page)
+        current_articles, last_page = db.get_articles_by_page(int(page))
 
     return render_template(
         "index.html",
