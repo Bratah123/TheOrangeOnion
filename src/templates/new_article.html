@@ -12,32 +12,27 @@
         Click below to add your article. Be sure to include a title, description, and the article itself.
       </div>
       
-      
       <div class="col">
         <div class="form-floating">
-          <div class="text-center"> 
-            <div class="row justify-content-center">
-              <div class="form-floating mb-3 col-9 col-lg-8">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Title</label>
+          <div class="text-center">
+            <form method="post">
+              <input value="new_article" type="hidden" name="form_type">
+              <div class="row justify-content-center">
+                <div class="form-floating mb-3 col-9 col-lg-8">
+                  <input type="text" class="form-control" id="titleInput" placeholder="Article Title" name="title" value="{{ request.form['title'] }}">
+                  <label for="titleInput">Title</label>
+                </div>
+                <div class="form-floating mb-3 col-9 col-lg-8">
+                  <input type="text" class="form-control" id="descriptionInput" placeholder="Article Description" name="content" value="{{ request.form['content'] }}">
+                  <label for="descriptionInput">Description</label>
+                </div>
+                <div class="form-floating mb-3 col-9 col-lg-8">
+                  <textarea class="form-control" placeholder="Leave a comment here" id="longContentInput" style="height: 100px" name="long_content" value="{{ request.form['long_content'] }}"></textarea>
+                  <label for="longContentInput">Article</label>
+                </div>
               </div>
-            </div>
-  
-            <div class="row justify-content-center">
-              <div class="form-floating mb-3 col-9 col-lg-8">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Description</label>
-              </div>
-            </div>
-  
-            <div class="row justify-content-center">
-              <div class="form-floating mb-3 col-9 col-lg-8">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                <label for="floatingTextarea2">Article</label>
-              </div>
-            </div>
-  
-            <div><input class="btn btn-primary" type="submit" value="Submit"></div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
           </div>
       </div>
   </div>

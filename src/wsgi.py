@@ -19,6 +19,7 @@ from db.orange_db import OrangeDB
 from util import logger
 from form_management.login import login_form
 from form_management.search import search_form
+from form_management.article_creation import article_creation
 
 PORT = 4040
 
@@ -91,6 +92,9 @@ def perform_logout():
 def new_article():
     if request.method == "POST":
         action = search_form(request.form)
+        if action:
+            return action()
+        action = article_creation(request.form)
         if action:
             return action()
 
