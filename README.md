@@ -1,5 +1,6 @@
-# CSUFTheOnion
-This repository houses the source code for the CSUF Onion Article website for CPSC 254, which publishes satirical news pertaining to California State University, Fullerton.
+# The Orange Onion
+This repository houses the source code for the The Orange Onion Article website for CPSC 254, which publishes satirical news pertaining to California State University, Fullerton.
+The name is a combination of the school's (CSUF) color theme and The Onion, a satirical article site that shows funny and fake articles.
 
 ## Tech Stack
 The Orange Onion is a Flask application styled using Bootstrap (served via CDN), and uses a SQLite embedded database.  
@@ -40,6 +41,17 @@ While development is mainly done using x86_64 machines running Windows, the proo
 6. Run command: `venv/bin/python3 src/db/init_db.py` to initialize the database
 7. Run command: `venv/Scripts/python src/db/init_db_data.py` to initialize some starter data to database
 
+## Gallery
+
+![image](https://github.com/Bratah123/TheOrangeOnion/assets/70254940/3214e67c-10c2-41f5-9e43-eff5819ab56e)
+![image](https://github.com/Bratah123/TheOrangeOnion/assets/58405975/f15f79d3-e289-4268-8f41-f240f79ca7ee)
+![image](https://github.com/Bratah123/TheOrangeOnion/assets/70254940/dfe8f349-548c-4dd0-8c74-3a4cb74428e8)
+![image](https://github.com/Bratah123/TheOrangeOnion/assets/70254940/e329418e-0174-4237-b888-8fa1c279d0a5)
+
+
+
+
+
 ## Run the Server
 1. Run the following command from the project root directory:
     - Windows: `venv/Scripts/python src/wsgi.py`
@@ -49,7 +61,7 @@ While development is mainly done using x86_64 machines running Windows, the proo
     - At the time of writing, this should be [127.0.0.1:4040](http://127.0.0.1:4040)
     - Your mileage may vary as this is subject to change; always check the console output
 
-## Acknowledgements
-External Collaborators:
-- [Amos Chua](https://github.com/KOOKIIEStudios)
-    - Project Manager, Proofreader
+## Authors
+- Back-end: [Brandon Nguyen](https://github.com/Bratah123)
+- Front-end: [Garret Feng](https://github.com/thebluehomosapien)
+- Documentation/DevOps: [Tung Nguyen](https://github.com/Ragnaorok)
