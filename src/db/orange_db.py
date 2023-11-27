@@ -38,7 +38,7 @@ class OrangeDB:
         Page 1 is the first 10 entries, page 2 is the next 10, etc.
         """
         cur = self.con.cursor()
-        cur.execute("SELECT * FROM articles ORDER BY id DESC LIMIT 10 OFFSET ?;", (page_num * 10,))
+        cur.execute("SELECT * FROM articles ORDER BY id DESC LIMIT 10 OFFSET ?;", ((page_num-1) * 10,))
         articles = cur.fetchall()
         cur.execute("SELECT COUNT(title) FROM articles;")
         count = (cur.fetchone()[0] - 1) // 10 + 1
