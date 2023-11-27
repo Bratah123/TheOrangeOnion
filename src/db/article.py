@@ -16,20 +16,16 @@
 import datetime
 from zoneinfo import ZoneInfo
 
-ARTICLE_CONTENT_WORD_LIMIT = 20
+ARTICLE_CONTENT_WORD_LIMIT = 100
 
 class Article:
-    def __init__(self, title: str, content: str, long_content: str, date: str = None):
+    def __init__(self, title: str, content: str, long_content: str, date: str = ""):
         self.uuid = -1
         self.title = title
         self.content = content
         self.long_content = long_content
+        self.date = date
 
-        if not date:
-            timestamp = datetime.datetime.now(tz=ZoneInfo("US/Pacific"))
-            self.date = timestamp.strftime("%d %b %Y, %I:%M%p")  # format: 31 Jan 2022, 11:59PM
-        else:
-            self.date = date
 
     def __repr__(self):
         return f"Article with title: '{self.title}'; submitted on {self.date}"

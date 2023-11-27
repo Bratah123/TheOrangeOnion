@@ -74,7 +74,7 @@ class OrangeDB:
         if cur.fetchone():
             raise ValueError(f"Article with title '{article.title}' already exists!")
         
-        cur.execute("INSERT INTO articles (title, content, long_content, date) VALUES (?, ?, ?, ?)", (article.title, article.content, article.long_content, article.date))
+        cur.execute("INSERT INTO articles (title, content, long_content, date) VALUES (?, ?, ?, datetime('now'))", (article.title, article.content, article.long_content))
         self.con.commit()
         cur.close()
 

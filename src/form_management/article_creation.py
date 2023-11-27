@@ -15,6 +15,8 @@
 # along with CSUFTheOnion. If not, see <https://www.gnu.org/licenses/>.
 from functools import partial
 from typing import Callable, Optional
+from db.orange_db import OrangeDB
+from db.article import Article
 
 from flask import redirect, url_for, session
 from werkzeug.datastructures.structures import ImmutableMultiDict
@@ -30,8 +32,13 @@ def article_creation(form: ImmutableMultiDict) -> Optional[Callable]:
         log.info(f"User {user[0]}, is attempting to create a new article...")
 
         title = form['title']
-        content = form['title']
-        long_content = form['title']
-        log.info(f"Article title: {title}, content: {content}, long_content: {long_content}")
+        content = form['content']
+        long_content = form['long_content']
+
+        article = Article(title, content, long_content)
+
+        with OrangeDB() as db:
+            db.save_article(article)
+
         return partial(redirect, location=url_for("landing_page", login_status=False))
     return
