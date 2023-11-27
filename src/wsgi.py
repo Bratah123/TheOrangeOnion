@@ -102,6 +102,9 @@ def new_article():
 
     if "user" in session:
         is_logged_in = True
+    else:
+        log.info("User is not logged in, redirecting to login page...")
+        return redirect(url_for("login_page"))
         
     return render_template("new_article.html", login_status=is_logged_in)
 
