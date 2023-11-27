@@ -35,17 +35,14 @@ def landing_page():
         if action:
             return action()
 
-    is_logged_in = False
+    # Checking if user is logged in, in our case, only admins can be logged in
+    login_status = True if "user" in session else False
     recent_articles = []
 
     with OrangeDB() as db:
         recent_articles = db.get_articles_by_page(0)
 
-    # Checking if user is logged in, in our case, only admins can be logged in
-    if "user" in session:
-        is_logged_in = True
-
-    return render_template("index.html", login_status=is_logged_in, articles=recent_articles)
+    return render_template("index.html", login_status=login_status, articles=recent_articles)
 
 
 @app.route("/search/<search_field_input>", methods=("GET", "POST"))
@@ -55,7 +52,9 @@ def search_page(search_field_input: str):
         if action:
             return action()
 
-    return render_template("search.html", search_field_input=search_field_input)
+    login_status = True if "user" in session else False
+
+    return render_template("search.html", login_status=login_status, search_field_input=search_field_input)
 
 
 @app.route("/login", methods=("GET", "POST"))
@@ -68,13 +67,9 @@ def login_page():
         if action:
             return action()
         
-    is_logged_in = False
+    login_status = True if "user" in session else False
 
-    # Checking if user is logged in, in our case, only admins can be logged in
-    if "user" in session:
-        is_logged_in = True
-
-    return render_template("login.html", login_status=is_logged_in)
+    return render_template("login.html", login_status=login_status)
 
 
 @app.route("/logout")
@@ -98,8 +93,6 @@ def new_article():
         if action:
             return action()
 
-    is_logged_in = False
-
     if "user" in session:
         is_logged_in = True
     else:
@@ -120,10 +113,7 @@ def article_page(article_id):
     with OrangeDB() as db:
         article = db.get_article_by_id(article_id)
 
-    login_status = False
-
-    if "user" in session:
-        login_status = True
+    login_status = True if "user" in session else False
 
     return render_template("article.html", article=article, login_status=login_status)
 
@@ -131,7 +121,10 @@ def article_page(article_id):
 @app.errorhandler(404)
 def not_found(error):
     log.debug(f"Invalid page access:\n\t\t%s", error)
-    return render_template("404.html")
+
+    login_status = True if "user" in session else False
+
+    return render_template("404.html", login_status=login_status)
 
 
 if __name__ == '__main__':
