@@ -128,6 +128,12 @@ def article_page(article_id):
     return render_template("article.html", article=article, login_status=login_status)
 
 
+@app.errorhandler(404)
+def not_found(error):
+    log.debug(f"Invalid page access:\n%s", error)
+    return render_template("404.html")
+
+
 if __name__ == '__main__':
     log.info(f"Starting Flask server on port {PORT}")
     app.run(host="0.0.0.0", port=4040, debug=True)
